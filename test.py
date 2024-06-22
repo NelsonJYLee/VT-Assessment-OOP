@@ -1,0 +1,41 @@
+from utils.transcriber import recognize_from_microphone
+from utils.stringCleaner import to_clean_string
+from utils.differenceFinder import find_differences
+
+class Test:
+    def __init__(self, answer_key, test_number):
+        self.answer_key = answer_key
+        self.test_number = test_number
+        self.transcriber_result = recognize_from_microphone()
+        self.raw_string = self.transcriber_result["text"]
+        self.duration = self.transcriber_result["duration"]
+        self.rounded_duration = round(self.duration)
+        self.cleaned_string = to_clean_string(self.raw_string)
+        self.marker_results = find_differences(self.cleaned_string, self.answer_key)
+        self.total_errors = {
+            "add_err": 0,
+            "omi_err": 0,
+            "sub_and_trans_err": 0
+        }
+        
+
+    def add_errors(self):
+        for err in self.marker_results["errors"]:
+            self.total_errors[err] += self.marker_results["errors"][err]
+
+    def print_results(self):
+        print(f"Test {self.test_number}")
+        print(f"Duration: {self.rounded_duration}")
+        print(f"Answer Key: {self.answer_key}")
+        print(f"Patient Speech: {self.cleaned_string}")
+        print(f"Marked Results: {self.marker_results['marked_numbers']}")
+        print(f"Errors: {self.marker_results['errors']}")
+        for differences in self.marker_results["differences"]:
+            print(differences)
+        
+
+
+    
+
+
+    
