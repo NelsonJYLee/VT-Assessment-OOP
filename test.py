@@ -24,14 +24,16 @@ class Test:
             self.total_errors[err] += self.marker_results["errors"][err]
 
     def print_results(self):
-        print(f"Test {self.test_number}")
-        print(f"Duration: {self.rounded_duration}")
-        print(f"Answer Key: {self.answer_key}")
-        print(f"Patient Speech: {self.cleaned_string}")
-        print(f"Marked Results: {self.marker_results['marked_numbers']}")
-        print(f"Errors: {self.marker_results['errors']}")
-        for differences in self.marker_results["differences"]:
-            print(differences)
+        results = {
+            "test_number": self.test_number,
+            "rounded_duration": self.rounded_duration,
+            "answer_key": self.answer_key,
+            "cleaned_string": self.cleaned_string,
+            "marked_numbers": self.marker_results['marked_numbers'],
+            "errors": self.marker_results['errors'],
+            "differences": self.marker_results["differences"]
+        }
+        return results
         
 
 

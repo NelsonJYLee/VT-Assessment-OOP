@@ -17,8 +17,8 @@ def main():
         return
      
     test_1 = Test(answer_key_1, 1)
-    test_1.add_errors
-    test_1.print_results
+    test_1.add_errors()
+    print(test_1.print_results())
 
 
 
