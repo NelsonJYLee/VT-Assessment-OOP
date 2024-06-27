@@ -10,6 +10,19 @@ from datetime import datetime
 def main():
     patient = Patient()
     print(patient.name, patient.dob, patient.age)
+
+    #recording sample 1
+    #37582574614763719392452175374874658923641
+    #omission of 9, addition of 1, sub of 2 for 8, addition of 1
+
+    #recording sample 2
+    #632917461525374845217739214763256464759
+    #addition of 1, omission of 9, sub of 7 for 6, sub 3 for 4, omission of 8
+
+    #recording sample 3
+    #25943411527835749879573714561469372672463632917462537484521179392147632574627598
+    #addition of double 1, omission of 2 and 5, sub 7 for 1, sub 3 for 2
+
     
     answer_key_1 = "3759825746147637939245217537487465292364"
     answer_key_2 = "6329174652537484521779392147632574637598"
