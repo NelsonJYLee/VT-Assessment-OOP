@@ -58,7 +58,7 @@ def recognize_from_microphone():
         duration = end_time - start_time
         time.sleep(2)
         speech_recognizer.stop_continuous_recognition()
-    
+
     #dictionary with text and duration keys are returned
     return {"text":recognized_text, 
             "duration": duration}

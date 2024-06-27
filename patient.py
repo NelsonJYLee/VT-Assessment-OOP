@@ -1,5 +1,5 @@
 class Patient:
-    def __init__(self, patient_name, date_of_birth, age):
-        self.patient_name = patient_name
-        self.date_of_birth = date_of_birth
-        self.age = age
+    def __init__(self):
+        self.name = input("Patient Name (Firstname Lastname): ")
+        self.dob = input("Date of Birth (mm/dd/yyyy): ")
+        self.age = input("Age: ")

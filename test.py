@@ -19,9 +19,9 @@ class Test:
         }
         
 
-    def add_errors(self):
+    def add_errors(self, total_errors):
         for err in self.marker_results["errors"]:
-            self.total_errors[err] += self.marker_results["errors"][err]
+            total_errors[err] += self.marker_results["errors"][err]
 
     def print_results(self):
         results = {
@@ -29,6 +29,7 @@ class Test:
             "rounded_duration": self.rounded_duration,
             "answer_key": self.answer_key,
             "cleaned_string": self.cleaned_string,
+            "raw_string": self.raw_string,
             "marked_numbers": self.marker_results['marked_numbers'],
             "errors": self.marker_results['errors'],
             "differences": self.marker_results["differences"]
