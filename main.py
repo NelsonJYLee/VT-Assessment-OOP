@@ -8,6 +8,8 @@ from datetime import datetime
 
 
 def main():
+
+    #Instantiate patient
     patient = Patient()
     print(patient.name, patient.dob, patient.age)
 
@@ -23,21 +25,24 @@ def main():
     #25943411527835749879573714561469372672463632917462537484521179392147632574627598
     #addition of double 1, omission of 2 and 5, sub 7 for 1, sub 3 for 2
 
-    
+    #Answer Keys
     answer_key_1 = "3759825746147637939245217537487465292364"
     answer_key_2 = "6329174652537484521779392147632574637598"
     answer_key_3 = "25943452783574987957371456146293726724636329174652537484521779392147632574637598"
 
+    #Total Errors
     total_errors = {
         "add_err": 0,
         "omi_err": 0,
         "sub_and_trans_err": 0
     }
 
+    #Confirmation to begin test
     continue_to_1 = input("Continue to Test 1? (y/n): ")
     if continue_to_1 == "n":
         return
-     
+    
+    #Instantiating first test, live transcription begins
     test_1 = Test(answer_key_1, 1)
     test_1.add_errors(total_errors)
     print(test_1.print_results())
@@ -46,6 +51,7 @@ def main():
     if continue_to_2 == "n":
         return
 
+    #Instantiating second test, live transcription begins
     test_2 = Test(answer_key_2, 2)
     test_2.add_errors(total_errors)
     print(test_2.print_results())
@@ -54,29 +60,32 @@ def main():
     if continue_to_3 == "n":
         return
     
+    #Instantiating third test, live transcription begins
     test_3 = Test(answer_key_3, 3)
     test_3.add_errors(total_errors)
     print(test_3.print_results())
 
     print(f"Total Errors: {total_errors}")
 
+    #Test Result Calculations
     total_vertical_time = round(test_1.duration + test_2.duration)
     total_horizontal_time = test_3.rounded_duration
     adjusted_horizontal_time = round(test_3.duration * (80/(80 - total_errors["omi_err"] + total_errors["add_err"])))
     total_errors_num = sum(total_errors.values())
-    DEM_ratio = round(adjusted_horizontal_time/total_vertical_time,2)
+    DEM_ratio = round(adjusted_horizontal_time/total_vertical_time, 2)
 
+    #Confirmation to create pdf
     make_pdf = input("Make PDF? (y/n): ")
     if make_pdf == "n":
         return
     
     print("Creating PDF...")
     
+    #context for pdf.html
     context = {
         "patient_name": patient.name,
         "date_of_birth": patient.dob,
         "age": patient.age,
-    ##marker_results_1['marked_numbers'],
         "answer_key_1": answer_key_1,
         "marker_results_1": test_1.marker_results['marked_numbers'],
         "rounded_duration_1": test_1.rounded_duration,
@@ -120,7 +129,6 @@ def main():
     pdfkit.from_string(output_text, output_path, configuration=config)
 
     print("Finished!")
-
 
 
 if __name__ == "__main__":
