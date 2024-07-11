@@ -12,12 +12,6 @@ class Test:
         self.rounded_duration = round(self.duration)
         self.cleaned_string = to_clean_string(self.raw_string)
         self.marker_results = find_differences(self.cleaned_string, self.answer_key)
-        self.total_errors = {
-            "add_err": 0,
-            "omi_err": 0,
-            "sub_and_trans_err": 0
-        }
-        
 
     def add_errors(self, total_errors):
         for err in self.marker_results["errors"]:
