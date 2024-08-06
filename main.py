@@ -68,9 +68,9 @@ def main():
     print(f"Total Errors: {total_errors}")
 
     #Test Result Calculations
-    total_vertical_time = round(test_1.duration + test_2.duration)
+    total_vertical_time = test_1.rounded_duration + test_2.rounded_duration
     total_horizontal_time = test_3.rounded_duration
-    adjusted_horizontal_time = round(test_3.duration * (80/(80 - total_errors["omi_err"] + total_errors["add_err"])))
+    adjusted_horizontal_time = round(total_horizontal_time * (80/(80 - total_errors["omi_err"] + total_errors["add_err"])), 1)
     total_errors_num = sum(total_errors.values())
     DEM_ratio = round(adjusted_horizontal_time/total_vertical_time, 2)
 
